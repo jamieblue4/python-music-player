@@ -5,16 +5,24 @@ from PIL import ImageTk, Image
 
 root = Tk()
 root.title('Music Player')
-root.geometry("800x600")
+root.geometry("500x300")
 
 pygame.mixer.init()
+
+menubar = Menu(root)
+root.config(menu=menubar)
+
+organize_menu = Menu(menubar, tearoff=False)
+organize_menu.add_command(label='Select Folder')
+menubar.add_cascade(label='Organize', menu=organize_menu)
+
 
 songlist = Listbox(root, bg="black", fg="white", width=100, height=15)
 songlist.pack()
 
 play_btn_img = ImageTk.PhotoImage(Image.open("play.png"))
 pause_btn_img = ImageTk.PhotoImage(Image.open("pause.png"))
-next_btn_img = ImageTk.PhotoImage(Image.open("forward.png"))
+next_btn_img = ImageTk.PhotoImage(Image.open("next.png"))
 back_btn_img = ImageTk.PhotoImage(Image.open("back.png"))
 
 control_frame = Frame(root)
