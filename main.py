@@ -5,7 +5,7 @@ from PIL import ImageTk, Image
 
 root = Tk()
 root.title('Music Player')
-root.geometry("700x500")
+root.geometry("800x600")
 
 pygame.mixer.init()
 
@@ -25,9 +25,9 @@ pause_btn = Button(control_frame, image=pause_btn_img, borderwidth=0)
 next_btn = Button(control_frame, image=next_btn_img, borderwidth=0)
 back_btn = Button(control_frame, image=back_btn_img, borderwidth=0)
 
-play_btn.grid(row=0, column=0, padx=7, pady=10)
-pause_btn.grid(row=0, column=1, padx=7, pady=10)
-next_btn.grid(row=0, column=2, padx=7, pady=10)
-back_btn.grid(row=0, column=3, padx=7, pady=10)
+play_btn.grid(row=0, column=1, padx=7, pady=10)
+pause_btn.grid(row=0, column=2, padx=7, pady=10)
+next_btn.grid(row=0, column=3, padx=7, pady=10)
+back_btn.grid(row=0, column=0, padx=7, pady=10)
 
 root.mainloop()
