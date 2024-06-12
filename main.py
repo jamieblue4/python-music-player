@@ -1,6 +1,7 @@
 from tkinter import filedialog
 from tkinter import *
-import pygame
+from pygame import mixer
+import tkinter.font as font
 import os
 from PIL import ImageTk, Image
 
@@ -8,7 +9,11 @@ root = Tk()
 root.title('Music Player')
 root.geometry("500x300")
 
-pygame.mixer.init()
+mixer.init()
+
+songlist = Listbox(root,selectmode=SINGLE,bg="black",fg="white",font=('arial',15),height=12,width=47,selectbackground="gray",selectforeground="black")
+songlist.grid(columnspan=9)
+songlist.pack()
 
 menubar = Menu(root)
 root.config(menu=menubar)
@@ -36,15 +41,15 @@ def play_music():
     global current_song, paused
     
     if not paused:
-        pygame.mixer.music.load(os.path.join(root.directory, current_song))
-        pygame.mixer.music.play()
+        mixer.music.load(os.path.join(root.directory, current_song))
+        mixer.music.play()
     else:
-        pygame.mixer.music.unpause()
+        mixer.music.unpause()
         paused = False
 
 def pause_music():
     global pause
-    pygame.mixer.music.pause()
+    mixer.music.pause()
     paused = True
 
 def next_music():
@@ -68,12 +73,9 @@ def prev_music():
     except:
         pass
 
-organize_menu = Menu(menubar, tearoff=False)
-organize_menu.add_command(label='Select Folder', command=load_music)
-menubar.add_cascade(label='Organize', menu=organize_menu)
-
-songlist = Listbox(root, bg="black", fg="white", width=100, height=15)
-songlist.pack()
+file_menu = Menu(menubar, tearoff=False)
+file_menu.add_command(label='Select Folder', command=load_music)
+menubar.add_cascade(label='File', menu=file_menu)
 
 play_btn_img = ImageTk.PhotoImage(Image.open("play.png"))
 pause_btn_img = ImageTk.PhotoImage(Image.open("pause.png"))
