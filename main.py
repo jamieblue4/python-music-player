@@ -1,17 +1,17 @@
 from tkinter import filedialog
 from tkinter import *
 from pygame import mixer
-import tkinter.font as font
 import os
 from PIL import ImageTk, Image
 
 
 root = Tk()
 root.title('Music Player')
+root.geometry("500x300")
 
 mixer.init()
 
-songlist = Listbox(root,bg="black",fg="white",height=15,width=75)
+songlist = Listbox(root, bg="black", fg="white", height=15, width=75, font="Arial")
 songlist.grid(columnspan=9)
 songlist.pack()
 
