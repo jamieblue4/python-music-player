@@ -5,18 +5,15 @@ import tkinter.font as font
 import os
 from PIL import ImageTk, Image
 
+
 root = Tk()
 root.title('Music Player')
-root.geometry("500x300")
 
 mixer.init()
 
-songlist = Listbox(root,selectmode=SINGLE,bg="black",fg="white",font=('arial',15),height=12,width=47,selectbackground="gray",selectforeground="black")
+songlist = Listbox(root,bg="black",fg="white",height=15,width=75)
 songlist.grid(columnspan=9)
 songlist.pack()
-
-menubar = Menu(root)
-root.config(menu=menubar)
 
 songs = []
 current_song = ""
@@ -73,9 +70,12 @@ def prev_music():
     except:
         pass
 
-file_menu = Menu(menubar, tearoff=False)
-file_menu.add_command(label='Select Folder', command=load_music)
-menubar.add_cascade(label='File', menu=file_menu)
+menubar = Menu(root)
+root.config(menu=menubar)
+
+add = Menu(menubar, tearoff=False)
+menubar.add_cascade(label='Add Music', menu=add)
+add.add_command(label='Select Folder', command=load_music)
 
 play_btn_img = ImageTk.PhotoImage(Image.open("play.png"))
 pause_btn_img = ImageTk.PhotoImage(Image.open("pause.png"))
